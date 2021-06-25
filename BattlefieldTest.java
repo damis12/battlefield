@@ -47,6 +47,7 @@ public class BattlefieldTest {
 		this.field.addRobot(new Chaser(new Position(1,0)));
 		this.field.addRobot(new Walker(new Position(0,2)));
 		
+		@SuppressWarnings("rawtypes")
 		Map<Class, Set<?>> rpt = this.field.raggruppaRobotPerTipo();
 		
 		assertEquals(2, rpt.size());
@@ -56,7 +57,7 @@ public class BattlefieldTest {
 		assertTrue(rpt.containsKey(new Walker(new Position(0,0)).getClass()));
 		
 		assertEquals(2, rpt.values().size());
-				
+			
 		
 		//fail("vedi DOMANDA 3");
 	}

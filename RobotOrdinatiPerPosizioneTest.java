@@ -24,31 +24,30 @@ public class RobotOrdinatiPerPosizioneTest {
 	@Test
 	public void initRobots() {
 		
-		if (this.robots != null) 
-			{
+		if (this.robots != null) {
 				this.robots.clear();
 				assertEquals(0, robots.size());
-				System.out.println("qui");
-				
-			}
+				System.out.println("sono qui");		
+		}
 		this.field = new Battlefield(2);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testRobotOrdinatiPerPosizione() {
 		
-		//campo vuoto
+		// empty field
 		this.initRobots();
 		this.robots =  (List<Robot>) this.field.getRobotOrdinatiPerPosizione();
 		assertEquals(0, robots.size());
 		
-		//campo contenente un singolo robot
+		//field contains a single robot
 		this.initRobots();
 		this.field.addRobot(new Walker(new Position(2,0)));
 		this.robots =  (List<Robot>) this.field.getRobotOrdinatiPerPosizione();
 		assertEquals(1, robots.size());
 		
-		//campo contenente due robot in posizioni di X diversa
+		//field contains two robots with two different X's position
 		this.initRobots();
 		this.field.addRobot(new Walker(new Position(2,0)));
 		this.field.addRobot(new Chaser(new Position(1,0)));
@@ -66,7 +65,7 @@ public class RobotOrdinatiPerPosizioneTest {
 		assertTrue(robots.get(0).posizione.equals(new Position(2,0)));
 		assertTrue(robots.get(1).posizione.equals(new Position(2,3)));
 		
-		//campo contenente quattro robot
+		// quattro robot nel campo
 		this.initRobots();
 		this.field.addRobot(new Walker(new Position(2,3)));
 		this.field.addRobot(new Chaser(new Position(7,9)));

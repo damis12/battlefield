@@ -117,10 +117,14 @@ public class Battlefield {
 	// DOMANDA 6
 	public SortedSet<?> getRobotOrdinatiPerLongevita() {
 		System.out.println(this.getAllRobots().size());
+		
 		for(Robot r : this.getAllRobots())
 			System.out.println("-long " + r.longevita);
+		
 		SortedSet<Robot>  robots = new TreeSet<Robot>(this.getAllRobots());
+		
 		System.out.println("-> " + robots.size());
+		
 		return robots;
 	}
 	
