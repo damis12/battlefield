@@ -1,12 +1,10 @@
-/**
- * 
- */
 package battlefield_inside;
 
-/**
- * @author giuseppe damis
- *
+/*
+ * Giuseppe Damis
+ * *
  */
+
 import java.util.*;
 
 public class Battlefield {
@@ -23,21 +21,39 @@ public class Battlefield {
 	
 	private Map<Position, Walker> posizione2walker;
 	private Map<Position, Chaser> posizione2chaser;
+	private Map<Position, Robot> posizione2robot;
 
 	public Battlefield(int dimensione) {
 		this.dim = dimensione;
 		this.posizione2walker = new HashMap<>();
 		this.posizione2chaser = new HashMap<>();
+		this.posizione2robot = new HashMap<>(); //DOMANDA 2
 		this.random = new Random();
 	}
+	
+	// DOMANDA 2
+	public void addRobot(Robot r) {
+		posizione2robot.put(r.getPosizione(), r);
+	}
+	
 
+	// DOMANDA 1
 	public void addWalker(Walker w) {
-		// (vedi DOMANDA 1)
+		posizione2walker.put(w.getPosizione(), w);
 	}
 
+	// DOMANDA 1
 	public void addChaser(Chaser c) {
-		// (vedi DOMANDA 1)
+		posizione2chaser.put(c.getPosizione(), c);
 	}
+
+	
+	// DOMANDA 2
+	public Robot getRobot(Position p) {
+		return posizione2robot.get(p);
+	}
+	
+
 
 	public Walker getWalker(Position p) {
 		return posizione2walker.get(p);
@@ -55,20 +71,57 @@ public class Battlefield {
 		return this.posizione2chaser.values();
 	}
 
+	
+	// DOMANDA 2
+	public Collection<Robot> getAllRobots() {
+		return this.posizione2robot.values();
+	}
+
 	@SuppressWarnings("rawtypes")
+	// DOMANDA 3
 	public Map<Class, Set<?>> raggruppaRobotPerTipo() {
-		// (vedi DOMANDA 3)
-		return null;
+		Map<Class, Set<?>> temp = new HashMap<Class, Set<?>>();
+			
+		Set<Robot> robotsPrimoTipo = new HashSet<Robot>();
+		Set<Robot> robotsSecondoTipo = new HashSet<Robot>();
+		
+		Set<Position> positions = this.posizione2robot.keySet();
+		
+		Class primoTipo = Walker.class;
+		Class secondoTipo = Chaser.class;
+		
+		for(Position p : positions) {
+			Robot r = this.posizione2robot.get(p);
+			
+			if (r.getClass().equals(primoTipo))	
+				robotsPrimoTipo.add(r);
+			else
+				robotsSecondoTipo.add(r);
+		}
+		
+		temp.put(primoTipo, robotsPrimoTipo);
+		temp.put(secondoTipo, robotsSecondoTipo);
+		
+		
+		return temp;
 	}
 	
+	// DOMANDA 4
 	public List<?> getRobotOrdinatiPerPosizione() {
-		// (vedi DOMANDA 4)
-		return null;
+		ComparatoreRobotPerPosizione cmp = new ComparatoreRobotPerPosizione();
+		List<Robot>  robots  = new ArrayList<Robot>(this.getAllRobots());
+		Collections.sort(robots, cmp);
+		return robots;
 	}
 	
+	// DOMANDA 6
 	public SortedSet<?> getRobotOrdinatiPerLongevita() {
-		// (vedi DOMANDA 6)
-		return null;
+		System.out.println(this.getAllRobots().size());
+		for(Robot r : this.getAllRobots())
+			System.out.println("-long " + r.longevita);
+		SortedSet<Robot>  robots = new TreeSet<Robot>(this.getAllRobots());
+		System.out.println("-> " + robots.size());
+		return robots;
 	}
 	
 	public List<Position> adiacenti(Position perno) {
@@ -121,10 +174,12 @@ public class Battlefield {
 			if (this.isLibera(posizione)) {
 				switch (this.random.nextInt(NUMERO_TIPOLOGIE)) {
 				case 0: Chaser chaser = new Chaser(posizione);
-						this.addChaser(chaser);
+						//this.addChaser(chaser);
+						this.addRobot(chaser); //DOMANDA 2
 				break;
 				case 1: Walker walker = new Walker(posizione);
-						this.addWalker(walker);
+						//this.addWalker(walker);
+						this.addRobot(walker); //DOMANDA 2
 				break;
 				//case: NUMERO_TIPOLOGIE-1...
 				default: throw new IllegalStateException();
@@ -134,4 +189,3 @@ public class Battlefield {
 	}
 
 }
-

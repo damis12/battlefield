@@ -1,20 +1,14 @@
-/**
- * 
- */
 package battlefield_inside;
 
-/**
- * @author giuseppe damis
- *
+/*
+ * Giuseppe Damis
+ * *
  */
-public class Chaser {
 
-	private Position posizione;
-	private int longevita;
+public class Chaser extends Robot {
 	
 	public Chaser(Position p) {
-		this.posizione = p;
-		this.longevita = 0 ;
+		super(p);
 	}
 	
 	public Position getPosizione() {

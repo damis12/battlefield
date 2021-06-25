@@ -1,41 +1,44 @@
-/**
- * 
- */
 package battlefield_inside;
 
-/**
- * @author giuseppe damis
- *
+/*
+ * Giuseppe Damis
+ * *
+ */
+
+/*
+ * Da sistemare. Vedi PositionTest.
+ * (vedi DOMANDA 1)
  */
 public class Position {
+	
+	private int x, y;
 
-	private int x;
-	private int y;
-
-	public Position(int x, int y) {
+	public Position(int x, int y){
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	public int getX() {
-		return x;
-	}
-	
-	public void setX(int x) {
-		this.x = x;
-	}
-	
-	public int getY() {
-		return y;
-	}
-	
-	public void setY(int y) {
-		this.y = y;
+		return this.x;
 	}
 
-	@Override
+	public int getY() {
+		return this.y;
+	}
+		
 	public String toString() {
-		return "Position [x=" + x + ", y=" + y + "]";
+		return this.x+"-"+this.y;
 	}
 	
-}//class Position
+	@Override
+	public boolean equals(Object o) {
+		return (this.getX() == ((Position)o).getX() && this.getY() == ((Position)o).getY());
+	}
+	
+	@Override
+	public int hashCode() {
+		return this.getX() + this.getY();
+	}
+
+
+}

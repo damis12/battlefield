@@ -1,11 +1,8 @@
-/**
- * 
- */
 package battlefield_inside;
 
-/**
- * @author giuseppe damis
- *
+/*
+ * Giuseppe Damis
+ * *
  */
 
 import java.awt.BorderLayout;

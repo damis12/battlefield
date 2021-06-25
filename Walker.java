@@ -1,20 +1,15 @@
-/**
- * 
- */
 package battlefield_inside;
 
-/**
- * @author giuseppe damis
- *
+/*
+ * Giuseppe Damis
+ * *
  */
-public class Walker {
 
-	private Position posizione;
-	private int longevita;
-	
+
+public class Walker extends Robot {
+
 	public Walker(Position p) {
-		this.posizione = p;
-		this.longevita = 0 ;
+		super(p);
 	}
 
 	public Position getPosizione() {
@@ -44,5 +39,5 @@ public class Walker {
 		return libera; // verso una posizione libera
 					   // tutto occupato: fermo
 	}
-
 }
+

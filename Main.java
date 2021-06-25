@@ -1,12 +1,10 @@
-/**
- * 
- */
 package battlefield_inside;
 
-/**
- * @author giuseppe damis
- *
+/*
+ * Giuseppe Damis
+ * *
  */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
