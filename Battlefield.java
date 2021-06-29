@@ -1,7 +1,7 @@
 package battlefield_inside;
 
 /*
- * Giuseppe Damis
+ *  Giuseppe Damis
  * *
  */
 
@@ -10,19 +10,17 @@ import java.util.*;
 public class Battlefield {
 
 	static final private Class<?>[] TIPOLOGIE = { Walker.class, Chaser.class } ;
-
 	static final private int NUMERO_TIPOLOGIE = TIPOLOGIE.length;
-
 	static final private double OCCUPAZIONE_INIZIALE = 0.01d; // 1%
-
 	private int dim;
-
+	
 	private Random random;
 	
 	private Map<Position, Walker> posizione2walker;
 	private Map<Position, Chaser> posizione2chaser;
 	private Map<Position, Robot> posizione2robot;
 
+	// COstruttore della classe Battlefield
 	public Battlefield(int dimensione) {
 		this.dim = dimensione;
 		this.posizione2walker = new HashMap<>();
@@ -31,24 +29,24 @@ public class Battlefield {
 		this.random = new Random();
 	}
 	
-	// DOMANDA 2
+	// RISPOSTA DOMANDA 2
 	public void addRobot(Robot r) {
 		posizione2robot.put(r.getPosizione(), r);
 	}
 	
 
-	// DOMANDA 1
+	// RISPOSTA DOMANDA 1
 	public void addWalker(Walker w) {
 		posizione2walker.put(w.getPosizione(), w);
 	}
 
-	// DOMANDA 1
+	// RISPOSTA DOMANDA 1
 	public void addChaser(Chaser c) {
 		posizione2chaser.put(c.getPosizione(), c);
 	}
 
 	
-	// DOMANDA 2
+	// RISPOSTA DOMANDA 2
 	public Robot getRobot(Position p) {
 		return posizione2robot.get(p);
 	}
@@ -72,13 +70,13 @@ public class Battlefield {
 	}
 
 	
-	// DOMANDA 2
+	// RISPOSTA DOMANDA 2
 	public Collection<Robot> getAllRobots() {
 		return this.posizione2robot.values();
 	}
 
 	@SuppressWarnings("rawtypes")
-	// DOMANDA 3
+	// RISPOSTA DOMANDA 3
 	public Map<Class, Set<?>> raggruppaRobotPerTipo() {
 		Map<Class, Set<?>> temp = new HashMap<Class, Set<?>>();
 			
@@ -106,7 +104,7 @@ public class Battlefield {
 		return temp;
 	}
 	
-	// DOMANDA 4
+	// RISPOSTA DOMANDA 4
 	public List<?> getRobotOrdinatiPerPosizione() {
 		ComparatoreRobotPerPosizione cmp = new ComparatoreRobotPerPosizione();
 		List<Robot>  robots  = new ArrayList<Robot>(this.getAllRobots());
@@ -114,7 +112,7 @@ public class Battlefield {
 		return robots;
 	}
 	
-	// DOMANDA 6
+	// RISPOSTA DOMANDA 6
 	public SortedSet<?> getRobotOrdinatiPerLongevita() {
 		System.out.println(this.getAllRobots().size());
 		
@@ -142,13 +140,13 @@ public class Battlefield {
 		}
 		adiacenti.remove(perno);  // coincidono: quindi non sono adiacenti
 		
-		Collections.shuffle(adiacenti); /* ordine casuale */
+		/* in ordine casuale */
+		Collections.shuffle(adiacenti);
 		return adiacenti;
 	}
 
 	private boolean inCampo(Position p) {
-		return  p.getX()>=0 && p.getX()<this.dim && 
-				p.getY()>=0 && p.getY()<this.dim  ;
+		return  p.getX()>=0 && p.getX()<this.dim && p.getY()>=0 && p.getY()<this.dim  ;
 				
 	} 
 
@@ -171,6 +169,7 @@ public class Battlefield {
 
 	public void riempi() {
 		long numeroIniziale = Math.round(OCCUPAZIONE_INIZIALE * dim * dim);
+		
 		for(int i=0 ; i<numeroIniziale; i++) {
 			int x = this.random.nextInt(this.dim);
 			int y = this.random.nextInt(this.dim);
@@ -187,9 +186,11 @@ public class Battlefield {
 				break;
 				//case: NUMERO_TIPOLOGIE-1...
 				default: throw new IllegalStateException();
-				} 
-			}
-		}
+				}//switch
+				
+			}//if
+			
+		}//for
 	}
 
 }

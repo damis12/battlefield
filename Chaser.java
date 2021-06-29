@@ -50,7 +50,7 @@ public class Chaser extends Robot {
 	}
 
 	private boolean isAvversario(Object avvistato) {
-		return true ; /* è sicuramente un Walker??? per ora SI! */
+		return true ;
 	}
 
 }
